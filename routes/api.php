@@ -64,13 +64,13 @@ use App\Http\Controllers\DetailTransaksiController;
     Route::post('transaksi/tambah', [TransaksiController::class, 'store']);
     Route::get('transaksi/tampil', [TransaksiController::class, 'getAll']);
     Route::get('transaksi/tampilID/{id}', [TransaksiController::class, 'getById']);
-
-    //MASIH ERROR GATAU KENAPA
-    Route::post('transaksi/detail/tambah', [DetailTransaksiController::class, 'store']);
-    Route::get('transaksi/detail/tampilID{id}', [DetailTransaksiController::class, 'getById']);
-    Route::post('transaksi/statusID/{id}', [TransaksiController::class, 'changeStatus']);
+    Route::put('transaksi/statusID/{id}', [TransaksiController::class, 'changeStatus']);
     Route::post('transaksi/bayarID/{id}', [TransaksiController::class, 'bayar']);
-    Route::get('transaksi/totalID/{id}', [DetailTransaksiController::class, 'getTotal']);
+
+    //Detail
+    Route::post('transaksi/detail/tambah', [DetailTransaksiController::class, 'store']);
+    Route::get('transaksi/detail/tampilID/{id}', [DetailTransaksiController::class, 'getById']);
+    Route::get('transaksi/detail/totalID/{id}', [DetailTransaksiController::class, 'getTotal']);
 });
 
 /*

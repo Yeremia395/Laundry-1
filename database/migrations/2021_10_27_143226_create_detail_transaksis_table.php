@@ -18,6 +18,7 @@ class CreateDetailTransaksisTable extends Migration
             $table->unsignedBigInteger('id_transaksi');
             $table->unsignedBigInteger('id_paket');
             $table->integer('quantity');
+            $table->integer('subtotal');
             $table->timestamps();
 
             $table->foreign('id_transaksi')->references('id')->on('transaksi');

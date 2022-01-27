@@ -20,8 +20,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role',['admin', 'kasir', 'owner']);
+            $table->unsignedBigInteger('id_outlet');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('id_outlet')->references('id')->on('outlet');
 
         });
     }
@@ -36,5 +39,4 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
     }
 }
-//$table->unsignedBigInteger('id_outlet');
-//$table->foreign('id_outlet')->references('id')->on('outlet');
+

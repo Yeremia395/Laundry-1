@@ -25,6 +25,7 @@ class UserController extends Controller
 			'username' => 'required',
 			'password' => 'required|string|min:6',
 			'role' => 'required',
+			'id_outlet' => 'required' 
             
 		]);
 
@@ -37,6 +38,7 @@ class UserController extends Controller
 		$user->username = $request->username;
 		$user->password = Hash::make($request->password);
 		$user->role 	= $request->role;
+		$user->id_outlet = $request->id_outlet;
 
 		$user->save();
 
