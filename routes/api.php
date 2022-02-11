@@ -19,20 +19,21 @@ use App\Http\Controllers\DetailTransaksiController;
 | -is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-    //USER
-    Route::post('user/tambah', [UserController::class, 'register']);  
+    //login
     Route::post('login', [UserController::class, 'login']);
-    
-    //LOGIN CHECK (ADMIN&KASIR)
-    Route::group(['middleware' => ['jwt.verify:admin,kasir']], function() {
+    Route::post('user/tambah', [UserController::class, 'register']);
 
+    //Login,login check,Logout (Admin,Kasir)
+    Route::group(['middleware' => ['jwt.verify:admin,kasir']], function() {
     Route::post('login/check', [UserController::class, 'loginCheck']);
-    Route::get('user/tampil', [UserController::class, 'getUser']);
     Route::post('logout', [UserController::class, 'logout']);
 });
-    //OUTLET(ADMIN&KASIR)
-    Route::group(['middleware' => ['jwt.verify:admin,kasir']], function() {
+    //USER Tambah (Admin)
+    Route::group(['middleware' => ['jwt.verify:admin']], function() {
+    Route::get('user/tampil', [UserController::class, 'getUser']);  
+    
+    //OUTLET(ADMIN)
+    Route::group(['middleware' => ['jwt.verify:admin']], function() {
 
     Route::post('outlet/tambah', [OutletController::class, 'store']);
     Route::get('outlet/tampil', [OutletController::class, 'getAll']);
@@ -49,8 +50,8 @@ use App\Http\Controllers\DetailTransaksiController;
     Route::put('member/updateID/{id}', [MemberController::class, 'update']);
     Route::delete('member/hapusID/{id}', [MemberController::class, 'delete']);
   });
-    //PAKET(ADMIN&KASIR)
-    Route::group(['middleware' => ['jwt.verify:admin,kasir']], function() {
+    //PAKET(ADMIN)
+    Route::group(['middleware' => ['jwt.verify:admin']], function() {
 
     Route::post('paket/tambah', [PaketController::class, 'store']);
     Route::get('paket/tampil', [PaketController::class, 'getAll']);
@@ -78,3 +79,4 @@ use App\Http\Controllers\DetailTransaksiController;
 | @yeremiarizky_
 |--------------------------------------------------------------------------
 */
+});
